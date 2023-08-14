@@ -1,40 +1,49 @@
 package ru.netology.data;
 
 import com.github.javafaker.Faker;
-import io.qameta.allure.Step;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 
 public class DataGenerator {
     private DataGenerator() {
     }
 
-    private static final Faker faker = new Faker(new Locale("ru"));
-
-    @Step("Генерируем актуальную дату с запасом в 4 дня в формате д.м.г")
-    public static String generateDate(int shift) {
-        return LocalDate.now().plusDays(shift).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+    public static String generateDate(int days) {
+        // TODO: добавить логику для объявления переменной date и задания её значения, для генерации строки с датой
+        // Вы можете использовать класс LocalDate и его методы для получения и форматирования даты
+        String date = LocalDate.now().plusDays(days).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+        return date;
     }
 
-    @Step("Фейкеом генерируем рандомные города")
     public static String generateCity() {
-        return faker.address().cityName();
+        // TODO: добавить логику для объявления переменной city и задания её значения, генерацию можно выполнить
+        // с помощью Faker, либо используя массив валидных городов и класс Random
+        List<String> list = Arrays.asList("Архангельск", "Астрахань", "Барнаул", "Владикавказ",
+                "Горно-Алтайск", "Йошкар-Ола", "Казань", "Калининград", "Калуга", "Краснодар", "Махачкала",
+                "Нарьян-Мар", "Салехард", "Самара", "Саранск", "Саратов", "Хабаровск", "Ханты-Мансийск", "Южно-Сахалинск",
+                "Великий Новгород", "Владивосток", "Владимир", "Вологда", "Рязань", "Биробиджан", "Чебоксары", "Москва",
+                "Санкт-Петербург", "Ульяновск", "Симферополь", "Ростов-на-Дону");
+        Random rand = new Random();
+        String city = list.get(rand.nextInt(list.size()));
+        return city;
     }
 
-    @Step("Фейкеом генерируем рандомные имена")
     public static String generateName() {
-        return faker.name().fullName();
+        // TODO: добавить логику для объявления переменной name и задания её значения, для генерации можно
+        // использовать Faker
+        Faker faker = new Faker(new Locale("ru"));
+        return faker.name().firstName() + " " + faker.name().lastName();
     }
 
-    @Step("Фейкеом генерируем рандомные номера телефонов из 11 цифр")
     public static String generatePhone() {
-        return faker.number().digits(11);
-    }
-
-    @Step("Генерируем всю рандомную информацию о пользователе: город, имя, телефон")
-    public static UserInfo generateUser(String locale) {
-        return new UserInfo(generateCity(), generateName(), generatePhone());
+        // TODO: добавить логику для объявления переменной phone и задания её значения, для генерации можно
+        // использовать Faker
+        Faker faker = new Faker(new Locale("ru"));
+        return faker.phoneNumber().phoneNumber();
     }
 }
