@@ -60,7 +60,7 @@ public class TestAppCardDelivery {
     @Test
     @DisplayName("Should successful plan and replan meeting")
     void shouldSuccessfulPlanAndReplanMeeting() {
-        var daysToAddForFirstMeeting = 4;
+        var daysToAddForFirstMeeting = 3;
         var firstMeetingDate = DataGenerator.generateDate(daysToAddForFirstMeeting);
         var daysToAddForSecondMeeting = 7;
         var secondMeetingDate = DataGenerator.generateDate(daysToAddForSecondMeeting);
